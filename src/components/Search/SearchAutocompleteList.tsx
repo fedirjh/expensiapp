@@ -630,7 +630,6 @@ function SearchAutocompleteList(
                 shouldScrollToFocusedIndex={!isInitialRender}
                 shouldSubscribeToArrowKeyEvents={shouldSubscribeToArrowKeyEvents}
                 disableKeyboardShortcuts={!shouldSubscribeToArrowKeyEvents}
-                addBottomSafeAreaPadding
             />
         )
     );
