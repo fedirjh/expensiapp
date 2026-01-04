@@ -15,7 +15,7 @@ import Terms from './Terms';
 
 type SignUpWelcomeFormProps = {
     userLogin?: string;
-}
+};
 
 function SignUpWelcomeForm({userLogin}: SignUpWelcomeFormProps) {
     const network = useNetwork();
@@ -23,7 +23,7 @@ function SignUpWelcomeForm({userLogin}: SignUpWelcomeFormProps) {
     const {translate} = useLocalize();
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: false});
     const [preferredLocale] = useOnyx(ONYXKEYS.NVP_PREFERRED_LOCALE, {canBeMissing: true});
-        const serverErrorText = useMemo(() => {
+    const serverErrorText = useMemo(() => {
         const errorMessage = account ? getLatestErrorMessage(account) : '';
         if (errorMessage === '402 Invalid TLD') {
             const tld = userLogin?.split('.').pop();
