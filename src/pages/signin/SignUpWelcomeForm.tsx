@@ -13,13 +13,24 @@ import ONYXKEYS from '@src/ONYXKEYS';
 import ChangeExpensifyLoginLink from './ChangeExpensifyLoginLink';
 import Terms from './Terms';
 
-function SignUpWelcomeForm() {
+type SignUpWelcomeFormProps = {
+    userLogin?: string;
+}
+
+function SignUpWelcomeForm({userLogin}: SignUpWelcomeFormProps) {
     const network = useNetwork();
     const styles = useThemeStyles();
     const {translate} = useLocalize();
     const [account] = useOnyx(ONYXKEYS.ACCOUNT, {canBeMissing: false});
     const [preferredLocale] = useOnyx(ONYXKEYS.NVP_PREFERRED_LOCALE, {canBeMissing: true});
-    const serverErrorText = useMemo(() => (account ? getLatestErrorMessage(account) : ''), [account]);
+        const serverErrorText = useMemo(() => {
+        const errorMessage = account ? getLatestErrorMessage(account) : '';
+        if (errorMessage === '402 Invalid TLD') {
+            const tld = userLogin?.split('.').pop();
+            return `The email domain extension .${tld} is invalid. Please try again with a valid one. Thanks!`;
+        }
+        return errorMessage;
+    }, [account, userLogin]);
 
     return (
         <>

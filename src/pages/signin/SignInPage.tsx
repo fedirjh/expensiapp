@@ -318,7 +318,7 @@ function SignInPage({ref}: SignInPageProps) {
                         // eslint-disable-next-line react-compiler/react-compiler
                         scrollPageToTop={signInPageLayoutRef.current?.scrollPageToTop}
                     />
-                    {shouldShouldSignUpWelcomeForm && <SignUpWelcomeForm />}
+                    {shouldShouldSignUpWelcomeForm && <SignUpWelcomeForm userLogin={userLoginToDisplay} />}
                     {shouldShowValidateCodeForm && (
                         <ValidateCodeForm
                             isVisible={!shouldShowAnotherLoginPageOpenedMessage}
